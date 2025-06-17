@@ -1,0 +1,14 @@
+{
+    "manifest_version": 3,
+    "name": "ClipSnip",
+    "version": "1.0",
+    "description": "Adds a ClipSnip button to YouTube",
+    "permissions": ["scripting", "activeTab"],
+    "host_permissions": ["*://www.youtube.com/*"],
+    "content_scripts": [
+      {
+        "matches": ["*://www.youtube.com/watch*"],
+        "js": ["content.js"]
+      }
+    ]
+  }
