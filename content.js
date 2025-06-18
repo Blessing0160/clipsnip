@@ -168,3 +168,29 @@ function addClipSnipButton() {
     } catch (error) {
       console.error('Initialization error:', error);
   }
+
+  async function convertWebMtoMP4(blob) {
+  try {
+    if (!ffmpeg.isLoaded()) {
+      await ffmpeg.load();
+    }
+
+    const data = await fetchFile(blob);
+    ffmpeg.FS('writeFile', 'input.webm', data);
+
+    await ffmpeg.run('-i', 'input.webm', '-c:v', 'libx264', 'output.mp4');
+
+    const outputData = ffmpeg.FS('readFile', 'output.mp4');
+    const mp4Blob = new Blob([outputData.buffer], { type: 'video/mp4' });
+
+    const url = URL.createObjectURL(mp4Blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `clipsnip-${Date.now()}.mp4`;
+    a.click();
+    URL.revokeObjectURL(url);
+  } catch (err) {
+    console.error('Conversion failed:', err);
+    showToast('Conversion to MP4 failed ❌');
+  }
+}
