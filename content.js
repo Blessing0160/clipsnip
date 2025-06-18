@@ -41,7 +41,7 @@ function addClipSnipButton() {
           <button class="duration-btn" data-duration="15" style="padding: 8px 12px; margin: 1px 7px; background: #333333; color: #fff; border: none; border-radius: 4px;">15s</button>
         </div>
         <div id="close-btn" style="width: 15px; height: 15px; background: #ff5f56; border-radius: 50%; cursor: pointer; position: absolute; top: 10px; right: 10px;"></div>
-      </div>
+      </div
     `;
   
     try {
