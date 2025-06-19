@@ -2,13 +2,21 @@
     "manifest_version": 3,
     "name": "ClipSnip",
     "version": "1.0",
-    "description": "Adds a ClipSnip button to YouTube",
-    "permissions": ["scripting", "activeTab"],
-    "host_permissions": ["*://www.youtube.com/*"],
+    "description": "Record and download 10-second YouTube video clips for memes.",
+    "permissions": [
+      "activeTab",
+      "scripting",
+      "downloads"
+    ],
+    "host_permissions": [
+      "*://www.youtube.com/*",
+      "https://*.unpkg.com/*"
+    ],
     "content_scripts": [
       {
         "matches": ["*://www.youtube.com/watch*"],
-        "js": ["content.js"]
+        "js": ["content.js"],
+        "run_at": "document_end"
       }
     ]
   }
